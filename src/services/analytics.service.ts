@@ -66,9 +66,11 @@ export const generateInterviewAnalytics = async (payload: {
       (q: Question) => q.question,
     );
 
+    
     return { analytics: analyticsResponse, status: 200 };
   } catch (error) {
     console.error("Error in Gemini API request:", error);
+    
     return { 
       error: "internal server error", 
       status: 500,

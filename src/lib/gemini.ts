@@ -71,7 +71,8 @@ export async function generateContent<T = Record<string, any>>(
     return text as unknown as T;
   } catch (error) {
     console.error("Error generating content with Gemini:", error);
-    throw error;
+    
+    throw new Error('Failed to generate content');
   }
 }
 
@@ -107,20 +108,24 @@ export interface CommunicationAnalysisResponse {
 // Type-specific helper functions
 export async function generateAnalytics(systemPrompt: string, userPrompt: string): Promise<AnalyticsResponse> {
   const result = await generateContent<AnalyticsResponse>(systemPrompt, userPrompt, "json");
+  
   return result as AnalyticsResponse;
 }
 
 export async function generateInsights(systemPrompt: string, userPrompt: string): Promise<InsightsResponse> {
   const result = await generateContent<InsightsResponse>(systemPrompt, userPrompt, "json");
+  
   return result as InsightsResponse;
 }
 
 export async function generateQuestions(systemPrompt: string, userPrompt: string): Promise<QuestionsResponse> {
   const result = await generateContent<QuestionsResponse>(systemPrompt, userPrompt, "json");
+  
   return result as QuestionsResponse;
 }
 
 export async function generateCommunicationAnalysis(systemPrompt: string, userPrompt: string): Promise<CommunicationAnalysisResponse> {
   const result = await generateContent<CommunicationAnalysisResponse>(systemPrompt, userPrompt, "json");
+  
   return result as CommunicationAnalysisResponse;
 }
